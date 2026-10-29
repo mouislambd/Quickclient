@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuickServe Frontend
 
-## Getting Started
+Complete frontend for the QuickServe On-Demand Home Services API, built with **Next.js (App Router)**, **TypeScript**, and **Tailwind CSS**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+1. **Authentication:** Register and Login pages, AuthContext (`user`, `token`, `login`, `logout`), session persistence on refresh, automatic redirect on 401.
+2. **Role-Based Access Control (RBAC):** Route protection for `CUSTOMER`, `PROVIDER`, and `ADMIN` using reusable `RouteGuard` and dynamic navbar.
+3. **Public Discovery:**
+   - **Home (`/`):** Hero section, search bar, featured categories, and popular services.
+   - **Services (`/services`):** Category filters, search bar, service cards, and real-time API cache status badge (`X-Cache: HIT/MISS`).
+   - **Service Details (`/services/[id]`):** Comprehensive service info, provider profile, reviews list, book service modal, and customer review submission.
+4. **Customer Dashboard (`/dashboard/bookings`):** View bookings with status badges (`PENDING`, `CONFIRMED`, `COMPLETED`, `CANCELLED`), cancel/track bookings, and leave reviews on completed bookings.
+5. **Provider Dashboard (`/dashboard/provider`):** CRUD operations for own services and incoming booking management (accept, complete, cancel).
+6. **Admin Dashboard (`/dashboard/admin`):** Category management (create, edit, delete) and overview of all platform users, services, and bookings.
+7. **UX & UI:** Loading spinners, `react-hot-toast` notifications, empty states, responsive design, and clean Tailwind styling.
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo Credentials
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You can use the following seeded demo accounts to test different roles:
 
-## Learn More
+| Role | Email | Password |
+|---|---|---|
+| **Admin** | `admin@quickserve.demo` | `Demo@1234` |
+| **Provider 1** | `provider1@quickserve.demo` | `Demo@1234` |
+| **Provider 2** | `provider2@quickserve.demo` | `Demo@1234` |
+| **Customer 1** | `customer1@quickserve.demo` | `Demo@1234` |
+| **Customer 2** | `customer2@quickserve.demo` | `Demo@1234` |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Running Frontend & Backend Together
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 1. Start the Backend (`C:\Users\MOU\Quicktask`)
+```bash
+cd C:\Users\MOU\Quicktask
+npm run dev
+```
 
-## Deploy on Vercel
+### 2. Start the Frontend (`C:\Users\MOU\Quickclient`)
+```bash
+cd C:\Users\MOU\Quickclient
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3001](http://localhost:3001) in your browser.
